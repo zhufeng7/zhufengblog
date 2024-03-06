@@ -1,6 +1,6 @@
 baseurl: /
 languageCode: en-us
-title: Hugo Ivy
+title: 珠峰
 theme: "hugo-ivy"
 googleAnalytics: ""
 disqusShortname: ""
@@ -14,24 +14,24 @@ permalinks:
 
 menu:
   main:
-    - name: "Home"
+    - name: "主页"
       url: "/"
       weight: 1
-    - name: "About"
+    - name: "关于我"
       url: "/about/"
       weight: 2
-    - name: "Categories"
+    - name: "分类"
       url: "/categories/"
       weight: 3
-    - name: "Tags"
+    - name: "标签"
       url: "/tags/"
       weight: 4
-    - name: "Subscribe"
-      url: "/index.xml"
+    #- name: "Subscribe"
+    #  url: "/index.xml"
 
 params:
-  description: "A Hugo theme ported from the static site generator Ivy."
-  footer: "&copy; [Yihui Xie](https://yihui.org) 2017-{Year} | [Github](https://github.com/yihui)"
+  description: "\"经济\"是经世和济民"
+  footer: "&copy; [珠峰](https://zhufeng.netlify.app/) 2024-{Year} | [Github](https://github.com/zhufeng7)"
   highlightjsLang: ["latex"]
   highlightjsTheme: "github"
   highlightjsVersion: "11.7.0"

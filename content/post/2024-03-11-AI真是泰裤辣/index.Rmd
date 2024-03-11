@@ -31,7 +31,128 @@ tags:
 
 # crewAI的学习笔记
 
-待更新...
+学习笔记整理自[crewAI官网](https://www.crewai.com/)。
+
+这个网站还自己利用AI工具，开发了`Chat with our Docs`功能。
+
+有什么问题可以直接问它，更高效。这才是好的应用嘛！
+
+## 核心概念
+
+### 代理人Agents
+
+简单来说，代理人我们可以理解为AI扮演的人，你可以创建很多个擅长不同事情的代理人。
+
+你可以通过设定参数来塑造出合适的人来达成你的目标。
+
+* 你必须交代的：
+
+你要交代任务背景（Backstory）。
+
+告诉它的角色是什么或者它擅长做什么（Role）。
+
+它的目标是做什么（Goal）。
+
+* 你选择性交代的：
+
+它能使用的工具有哪些（Tools）。
+
+它在被迫给出最佳答案前最多“思考”多少次（Max Iter）。
+
+它使用的大语言模型（LLM、Function Calling LLM）。
+
+它需不需要记录自己执行的过程（Verbose）。
+
+是否允许它自己把任务委托给其他更合适的代理人（Allow Delegation）。
+
+它是否有记忆（Memory）。
+
+它执行每一步操作后后需要干什么（Step Callback）。
+
+* 例子
+
+```python
+from crewai import Agent   #导入crewai的代理人模块
+#创建代理人、塑造它！
+agent = Agent(
+  role='Data Analyst',
+  goal='Extract actionable insights',
+  backstory="""You're a data analyst at a large company.
+  You're responsible for analyzing data and providing insights
+  to the business.
+  You're currently working on a project to analyze the
+  performance of our marketing campaigns.""",
+  tools=[my_tool1, my_tool2],  # Optional, defaults to an empty list
+  llm=my_llm,  # Optional
+  function_calling_llm=my_llm,  # Optional
+  max_iter=15,  # Optional
+  max_rpm=None, # Optional
+  verbose=True,  # Optional
+  allow_delegation=True,  # Optional
+  step_callback=my_intermediate_step_callback,  # Optional
+  memory=True  # Optional
+)
+```
+
+### 任务Tasks
+
+简单来说，任务是上面的代理人们要一起完成的事情。
+
+* 你必须要交代的：
+
+你要简明扼要地交代任务是什么（Description）。
+
+明确且详细地讲出任务预期的成果是什么（Expected Output）。
+
+* 你选择性交代的：
+
+你可以指定具体某个代理人来负责这个任务（Agent），如果没指定，crewAI会自己决定。
+
+代理们执行任务时可以利用的工具（Tools）。
+
+本任务的上游任务（Context），就是本任务的执行依赖于哪些任务。比如把大象塞进冰箱只需要三步：打开冰箱门、把大象塞进去、关上冰箱门，但如果你没有打开冰箱门，是无法把大象塞冰箱里，更不用说关上冰箱门了。
+
+是否允许代理人不等待整体任务完成后，再继续执行自己的任务（Async Execution）。这对于需要很长时间才能完成的任务，或者对于接下来要执行的任务并不重要的任务非常有用。比如，第一个任务是搜集数据，第二个是分析数据，如果需要等待，那么就是任务一任务二循环执行。如果不需要等待，那可能是，执行任务一，任务二在执行时，任务一再次执行。
+
+任务的结果保存到什么文件（Output File）中。
+
+任务结束后需要额外做什么（Callback）？
+
+### 工具Tools
+
+简单来说，正如我们所知道的，如果代理人只是由大语言模型构成，那么他们其实只能做问答，并在彼此之间互相问答。这并没有什么了不起的。而工具是让整个工作流变牛逼的关键。
+
+工具是一种技能或者功能，它可以交给代理来使用。来源包括crewAI、LangChain提供的工具，以及你自己开发的工具。
+
+例如：爬虫、读写本地文件、搜索github代码等非常丰富，可以自行了解。
+
+### 流程Processes
+
+简单来说，就是代理人们执行任务的流程。
+
+目前有两种，还有一种正在开发。
+
+* 顺序流程（Sequential）
+
+一件件任务按顺序完成。
+
+* 分级管理（Hierarchical）
+
+任务分级管理，指定一个AI扮演管理者，这个管理者来统筹协调其他代理人来完成任务。最好使用GPT4等，目前最牛逼的模型。
+
+### 一组工作人员Crews
+
+简单来说，就是一组代理人，他们一起完成任务。要有代理人，要有明确的任务，要有执行的流程。其实就是把上面的东西打包在一起，攒局，让他们成为一个团队做事。
+
+### 协作Collaboration
+
+简单来说，就是代理人之间如何互相协作。
+
+他们会信息共享（Information Sharing），会互相协助（Task Assistance），于是当一个代理发现自己做不太好，会向更专业的伙伴求助。自动进行资源分配（Resource Allocation）。
+
+* PS：creaAI支持多语言。
+
+核心的东西基本已经讲完了，其他细节的可以自己去了解，官方提供了很多[例子](https://github.com/joaomdmoura/crewAI-examples/tree/main)。其中我比较感兴趣的是[stock_analysis](https://github.com/joaomdmoura/crewAI-examples/tree/main/stock_analysis),它会爬取雅虎金融新闻来分析。
 
 
 

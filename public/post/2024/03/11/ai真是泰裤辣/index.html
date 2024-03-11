@@ -31,11 +31,6 @@
     
     
 
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css">
-
-
-
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
     <link rel="stylesheet" href="/css/custom.css" />
@@ -134,30 +129,6 @@
 <p>是否允许它自己把任务委托给其他更合适的代理人（Allow Delegation）。</p>
 <p>它是否有记忆（Memory）。</p>
 <p>它执行每一步操作后后需要干什么（Step Callback）。</p>
-<ul>
-<li>例子</li>
-</ul>
-<pre><code class="language-python">from crewai import Agent   #导入crewai的代理人模块
-#创建代理人、塑造它！
-agent = Agent(
-  role='Data Analyst',
-  goal='Extract actionable insights',
-  backstory=&quot;&quot;&quot;You're a data analyst at a large company.
-  You're responsible for analyzing data and providing insights
-  to the business.
-  You're currently working on a project to analyze the
-  performance of our marketing campaigns.&quot;&quot;&quot;,
-  tools=[my_tool1, my_tool2],  # Optional, defaults to an empty list
-  llm=my_llm,  # Optional
-  function_calling_llm=my_llm,  # Optional
-  max_iter=15,  # Optional
-  max_rpm=None, # Optional
-  verbose=True,  # Optional
-  allow_delegation=True,  # Optional
-  step_callback=my_intermediate_step_callback,  # Optional
-  memory=True  # Optional
-)
-</code></pre>
 <h3 id="任务tasks">任务Tasks</h3>
 <p>简单来说，任务是上面的代理人们要一起完成的事情。</p>
 <ul>
@@ -218,16 +189,6 @@ agent = Agent(
 <script src="//cdn.jsdelivr.net/npm/@xiee/utils/js/center-img.js" defer></script>
 
   
-
-
-
-
-
-
-
-<script src="//cdn.jsdelivr.net/combine/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js,npm/@xiee/utils/js/load-highlight.js" defer></script>
-
-
 
   
   <hr>
